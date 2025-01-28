@@ -51,21 +51,14 @@ class ESDBasePlugin {
     const std::string& inDeviceID) {
   }
 
-  // virtual void DialPressForAction(
-  //   const std::string& inAction,
-  //   const std::string& inContext,
-  //   const nlohmann::json& inPayload,
-  //   const std::string& inDeviceID) {
-  // }
-
-  virtual void DialDownForAction(
+  virtual void DialPressForAction(
     const std::string& inAction,
     const std::string& inContext,
     const nlohmann::json& inPayload,
     const std::string& inDeviceID) {
   }
 
-  virtual void DialUpForAction(
+  virtual void DialReleaseForAction(
     const std::string& inAction,
     const std::string& inContext,
     const nlohmann::json& inPayload,

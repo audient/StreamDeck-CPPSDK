@@ -44,9 +44,8 @@ LICENSE file.
 #define kESDSDKEventPropertyInspectorDidDisappear \
   "propertyInspectorDidDisappear"
 #define kESDSDKEventDialRotate "dialRotate"
-// #define kESDSDKEventDialPress "dialPress" // Not in v6.8.1 (21263) MacOS
-#define kESDSDKEventDialDown "dialDown"
-#define kESDSDKEventDialUp "dialUp"
+#define kESDSDKEventDialPress "dialDown" // `dialPress` Not in v6.8.1 (21263) MacOS
+#define kESDSDKEventDialRelease "dialRelease"
 #define kESDSDKEventTouchTap "touchTap"
 
 //
