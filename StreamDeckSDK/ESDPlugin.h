@@ -43,7 +43,19 @@ class ESDPlugin : public ESDBasePlugin {
     const nlohmann::json& inPayload,
     const std::string& inDeviceID) override;
 
-  virtual void DialPressForAction(
+  // virtual void DialPressForAction(
+  //   const std::string& inAction,
+  //   const std::string& inContext,
+  //   const nlohmann::json& inPayload,
+  //   const std::string& inDeviceID) override;
+
+  virtual void DialDownForAction(
+    const std::string& inAction,
+    const std::string& inContext,
+    const nlohmann::json& inPayload,
+    const std::string& inDeviceID) override;
+  
+  virtual void DialUpForAction(
     const std::string& inAction,
     const std::string& inContext,
     const nlohmann::json& inPayload,

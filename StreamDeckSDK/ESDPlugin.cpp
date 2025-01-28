@@ -50,21 +50,47 @@ void ESDPlugin::KeyUpForAction(
   action->KeyUp(inPayload["settings"]);
 }
 
-void ESDPlugin::DialPressForAction(
+// void ESDPlugin::DialPressForAction(
+//   const std::string& inAction,
+//   const std::string& inContext,
+//   const json& inPayload,
+//   const std::string& inDeviceID) {
+//   auto action = GetOrCreateAction(inAction, inContext);
+//   if (!action) {
+//     ESDLog("No action for dialPress - {} {}", inAction, inContext);
+//     return;
+//   }
+//   if (inPayload["pressed"]) {
+//     action->DialPress(inPayload["settings"]);
+//   } else {
+//     action->DialRelease(inPayload["settings"]);
+//   }
+// }
+
+void ESDPlugin::DialDownForAction(
   const std::string& inAction,
   const std::string& inContext,
   const json& inPayload,
   const std::string& inDeviceID) {
   auto action = GetOrCreateAction(inAction, inContext);
   if (!action) {
-    ESDLog("No action for dialPress - {} {}", inAction, inContext);
+    ESDLog("No action for dialDown - {} {}", inAction, inContext);
     return;
   }
-  if (inPayload["pressed"]) {
-    action->DialPress(inPayload["settings"]);
-  } else {
-    action->DialRelease(inPayload["settings"]);
+  action->DialPress(inPayload["settings"]);
+}
+
+void ESDPlugin::DialUpForAction(
+  const std::string& inAction,
+  const std::string& inContext,
+  const json& inPayload,
+  const std::string& inDeviceID) {
+  auto action = GetOrCreateAction(inAction, inContext);
+  if (!action) {
+    ESDLog("No action for dialUp - {} {}", inAction, inContext);
+    return;
   }
+  action->DialRelease(inPayload["settings"]);
 }
 
 void ESDPlugin::DialRotateForAction(
