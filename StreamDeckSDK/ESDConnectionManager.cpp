@@ -126,6 +126,8 @@ void ESDConnectionManager::OnMessage(
         mPlugin->DialReleaseForAction(action, context, payload, deviceID);
       } else if (event == kESDSDKEventDialRotate) {
         mPlugin->DialRotateForAction(action, context, payload, deviceID);
+      } else if (event == kESDSDKEventTouchTap) {
+        mPlugin->TouchTapForAction(action, context, payload, deviceID);
       }
     } catch (...) {
     }

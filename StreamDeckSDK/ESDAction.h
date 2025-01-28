@@ -56,6 +56,10 @@ class ESDAction {
     const nlohmann::json& settings,
     int ticks,
     bool pressed);
+  virtual void TouchTap(
+    const nlohmann::json& settings,
+    bool hold,
+    std::string item);
 
   virtual void DidReceiveSettings(const nlohmann::json& settings);
   virtual void SendToPlugin(const nlohmann::json& payload);

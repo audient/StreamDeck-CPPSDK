@@ -51,6 +51,12 @@ void ESDAction::DialRotate(
   bool pressed) {
 }
 
+void ESDAction::TouchTap(
+  const nlohmann::json& settings,
+  bool hold,
+  std::string item) {
+}
+
 void ESDAction::SendToPlugin(const nlohmann::json& payload) {
 }
 

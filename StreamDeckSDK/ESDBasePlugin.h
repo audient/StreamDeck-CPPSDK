@@ -72,6 +72,13 @@ class ESDBasePlugin {
     const std::string& inDeviceID) {
   }
 
+  virtual void TouchTapForAction(
+    const std::string& inAction,
+    const std::string& inContext,
+    const nlohmann::json& inPayload,
+    const std::string& inDeviceID) {
+  }
+
   virtual void WillAppearForAction(
     const std::string& inAction,
     const std::string& inContext,

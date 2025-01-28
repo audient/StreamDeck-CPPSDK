@@ -95,6 +95,21 @@ void ESDPlugin::DialRotateForAction(
   action->DialRotate(inPayload["settings"], ticks, pressed);
 }
 
+void ESDPlugin::TouchTapForAction(
+  const std::string& inAction,
+  const std::string& inContext,
+  const nlohmann::json& inPayload,
+  const std::string& inDeviceID) {
+  auto action = GetOrCreateAction(inAction, inContext);
+  if (!action) {
+    ESDLog("No action for touchTap - {} {}", inAction, inContext);
+    return;
+  }
+  const bool hold(inPayload["hold"]);
+  const std::string item = inPayload.value("item", "");
+  action->TouchTap(inPayload["settings"], hold, item);
+}
+
 void ESDPlugin::WillAppearForAction(
   const std::string& inAction,
   const std::string& inContext,
