@@ -63,7 +63,7 @@ void ESDAction::SendToPlugin(const nlohmann::json& payload) {
 void ESDAction::WillAppear(const nlohmann::json& settings) {
 }
 
-void WillDisappear(const nlohmann::json& settings) {
+void ESDAction::WillDisappear(const nlohmann::json& settings) {
 }
 
 void ESDAction::SetState(int state) {
