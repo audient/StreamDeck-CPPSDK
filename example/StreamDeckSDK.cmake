@@ -4,6 +4,7 @@ FetchContent_Declare(
   StreamDeckSDK
   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../
   GIT_TAG none
+  DOWNLOAD_EXTRACT_TIMESTAMP ON
 )
 
 FetchContent_GetProperties(StreamDeckSDK)

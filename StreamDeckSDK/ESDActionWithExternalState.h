@@ -30,6 +30,8 @@ class ESDActionWithExternalState : public ESDAction {
     = 0;
   virtual void WillAppear() {
   }
+  virtual void WillDisappear() {
+  }
   virtual void KeyDown() {
   }
   virtual void KeyUp() {
@@ -72,6 +74,11 @@ class ESDActionWithExternalState : public ESDAction {
   virtual void WillAppear(const nlohmann::json& settings) override final {
     DidReceiveSettings(settings);
     WillAppear();
+  }
+
+  virtual void WillDisappear(const nlohmann::json& settings) override final {
+    DidReceiveSettings(settings);
+    WillDisappear();
   }
 
   virtual void KeyUp(const nlohmann::json& settings) override final {
