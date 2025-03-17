@@ -57,14 +57,27 @@ void ESDPlugin::DialPressForAction(
   const std::string& inDeviceID) {
   auto action = GetOrCreateAction(inAction, inContext);
   if (!action) {
-    ESDLog("No action for dialPress - {} {}", inAction, inContext);
+    ESDLog("No action for dialDown - {} {}", inAction, inContext);
     return;
   }
-  if (inPayload["pressed"]) {
+  // if (inPayload["pressed"]) {
     action->DialPress(inPayload["settings"]);
-  } else {
-    action->DialRelease(inPayload["settings"]);
+  // } else {
+  //   action->DialRelease(inPayload["settings"]);
+  // }
+}
+
+void ESDPlugin::DialReleaseForAction(
+  const std::string& inAction,
+  const std::string& inContext,
+  const json& inPayload,
+  const std::string& inDeviceID) {
+  auto action = GetOrCreateAction(inAction, inContext);
+  if (!action) {
+    ESDLog("No action for dialUp - {} {}", inAction, inContext);
+    return;
   }
+  action->DialRelease(inPayload["settings"]);
 }
 
 void ESDPlugin::DialRotateForAction(
@@ -82,6 +95,21 @@ void ESDPlugin::DialRotateForAction(
   action->DialRotate(inPayload["settings"], ticks, pressed);
 }
 
+void ESDPlugin::TouchTapForAction(
+  const std::string& inAction,
+  const std::string& inContext,
+  const nlohmann::json& inPayload,
+  const std::string& inDeviceID) {
+  auto action = GetOrCreateAction(inAction, inContext);
+  if (!action) {
+    ESDLog("No action for touchTap - {} {}", inAction, inContext);
+    return;
+  }
+  const bool hold(inPayload["hold"]);
+  const std::string item = inPayload.value("item", "");
+  action->TouchTap(inPayload["settings"], hold, item);
+}
+
 void ESDPlugin::WillAppearForAction(
   const std::string& inAction,
   const std::string& inContext,
@@ -93,6 +121,19 @@ void ESDPlugin::WillAppearForAction(
     return;
   }
   action->WillAppear(inPayload["settings"]);
+}
+
+void ESDPlugin::WillDisappearForAction(
+  const std::string& inAction,
+  const std::string& inContext,
+  const json& inPayload,
+  const std::string& inDeviceID) {
+  auto action = GetOrCreateAction(inAction, inContext);
+  if (!action) {
+    ESDLog("No action for WillDisappear - {} {}", inAction, inContext);
+    return;
+  }
+  action->WillDisappear(inPayload["settings"]);
 }
 
 void ESDPlugin::SendToPlugin(

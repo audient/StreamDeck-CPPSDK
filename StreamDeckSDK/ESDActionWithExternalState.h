@@ -30,6 +30,8 @@ class ESDActionWithExternalState : public ESDAction {
     = 0;
   virtual void WillAppear() {
   }
+  virtual void WillDisappear() {
+  }
   virtual void KeyDown() {
   }
   virtual void KeyUp() {
@@ -39,6 +41,8 @@ class ESDActionWithExternalState : public ESDAction {
   virtual void DialRelease() {
   }
   virtual void DialRotate(int ticks, bool pressed) {
+  }
+  virtual void TouchTap(bool hold, std::string item) {
   }
 
   const TSettings& GetSettings() const {
@@ -72,6 +76,11 @@ class ESDActionWithExternalState : public ESDAction {
     WillAppear();
   }
 
+  virtual void WillDisappear(const nlohmann::json& settings) override final {
+    DidReceiveSettings(settings);
+    WillDisappear();
+  }
+
   virtual void KeyUp(const nlohmann::json& settings) override final {
     DidReceiveSettings(settings);
     KeyUp();
@@ -98,6 +107,14 @@ class ESDActionWithExternalState : public ESDAction {
     bool pressed) override final {
     DidReceiveSettings(settings);
     DialRotate(ticks, pressed);
+  }
+
+  virtual void TouchTap(
+    const nlohmann::json& settings,
+    bool hold,
+    std::string item) override final {
+    DidReceiveSettings(settings);
+    TouchTap(hold, item);
   }
 
  private:
