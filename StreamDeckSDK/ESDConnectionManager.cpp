@@ -224,6 +224,22 @@ void ESDConnectionManager::SetTitle(
     mConnectionHandle, jsonObject.dump(), websocketpp::frame::opcode::text, ec);
 }
 
+/**
+ * Sets the image on the Stream Deck key for the specified context.
+ * 
+ * @param inBase64ImageString The image data, which can be:
+ *   - A decoded SVG string prefixed with "data:image/svg+xml,"
+ *   - A base64-encoded PNG string prefixed with "data:image/png;base64,"
+ *   - A standard relative path with no prefix.
+ * 
+ * @param inTarget Specifies the target where the image should be set: 
+ *   - "hardware" for physical keys
+ *   - "software" for virtual keys
+ *   - "both" for both hardware and software.
+ * 
+ * @param inState The key state to assign the image to. 
+ *   - Use `-1` to apply the image to all states.
+ */
 void ESDConnectionManager::SetImage(
   const std::string& inBase64ImageString,
   const std::string& inContext,
@@ -236,15 +252,9 @@ void ESDConnectionManager::SetImage(
 
   json payload;
   payload[kESDSDKPayloadTarget] = inTarget;
-  const std::string pngPrefix = "data:image/png;base64,";
-  const std::string prefix = "data:image/";
-  if (
-    inBase64ImageString.empty()
-    || inBase64ImageString.substr(0, prefix.length()).find(prefix) == 0)
-    payload[kESDSDKPayloadImage] = inBase64ImageString;
-  else
-    // assume Base64-encoded PNG image
-    payload[kESDSDKPayloadImage] = pngPrefix + inBase64ImageString;
+  
+  payload[kESDSDKPayloadImage] = inBase64ImageString;
+
   if (inState >= 0) {
     payload[kESDSDKPayloadState] = inState;
   }

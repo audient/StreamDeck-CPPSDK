@@ -123,6 +123,19 @@ void ESDPlugin::WillAppearForAction(
   action->WillAppear(inPayload["settings"]);
 }
 
+void ESDPlugin::WillDisappearForAction(
+  const std::string& inAction,
+  const std::string& inContext,
+  const json& inPayload,
+  const std::string& inDeviceID) {
+  auto action = GetOrCreateAction(inAction, inContext);
+  if (!action) {
+    ESDLog("No action for WillDisappear - {} {}", inAction, inContext);
+    return;
+  }
+  action->WillDisappear(inPayload["settings"]);
+}
+
 void ESDPlugin::SendToPlugin(
   const std::string& inAction,
   const std::string& inContext,
