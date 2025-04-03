@@ -201,6 +201,35 @@ void ESDConnectionManager::Run() {
   }
 }
 
+bool ESDConnectionManager::Stop() {
+  websocketpp::lib::error_code ec;
+  try {
+    mWebsocket.stop_perpetual();
+
+    if (auto connHandle = mConnectionHandle.lock()) {
+      auto con = mWebsocket.get_con_from_hdl(connHandle, ec);
+      if (!ec && con) {
+        // ESDDebug("Closing WebSocket connection...");
+        mWebsocket.close(connHandle, websocketpp::close::status::going_away, "Stopping connection", ec);
+        if (ec) {
+          // ESDDebug("Error closing connection: {}", ec.message());
+        }
+      }
+    }
+
+    // Stop the ASIO context if running
+    if (mAsioContext) {
+      mAsioContext->stop();
+      mAsioContext.reset();
+    }
+
+    // std::cout << "ESDConnectionManager stopped successfully.";
+  } catch (const std::exception& e) {
+    // std::cout << "Exception during Stop: {}", e.what();
+  }
+  return bool(ec);
+}
+
 void ESDConnectionManager::SetTitle(
   const std::string& inTitle,
   const std::string& inContext,

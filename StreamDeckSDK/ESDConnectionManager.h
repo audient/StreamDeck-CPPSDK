@@ -36,6 +36,8 @@ class ESDConnectionManager {
 
   // Start the event loop
   void Run();
+  // Stop the event loop
+  bool Stop();
 
   // API to communicate with the Stream Deck application
   void SetTitle(
