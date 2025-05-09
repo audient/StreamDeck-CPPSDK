@@ -55,6 +55,8 @@ class ESDConnectionManager {
   void SetSettings(
     const nlohmann::json& inSettings,
     const std::string& inContext);
+  void GetSettings(
+    const std::string& inContext);
   void GetGlobalSettings();
   void SetGlobalSettings(const nlohmann::json& inSettings);
   void SetState(int inState, const std::string& inContext);
