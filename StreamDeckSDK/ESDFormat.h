@@ -13,7 +13,11 @@
  * - has full wchar_t support in MSVC 2022, including compile-time checking
  */
 
-#ifdef __cpp_lib_format
+#if _MSVC_VER
+#error
+#endif
+
+#if defined(_MSC_VER) && defined(__cpp_lib_format)
 #include <format>
 namespace ESD {
 using std::format;
