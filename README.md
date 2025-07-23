@@ -156,6 +156,8 @@ Support may be available from the community via [Discord](https://go.fredemmott.
 
 I am not able to respond to 1:1 requests for help via any means, including GitHub, Discord, Twitter, Reddit, or email.
 
+This repository was archived by the original owner on May 16, 2025.
+
 # LICENSE
 
 The source code for this project is [MIT-licensed](LICENSE).
